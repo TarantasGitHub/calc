@@ -1,3 +1,5 @@
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
 namespace calc
 {
     public partial class Form1 : Form
@@ -6,16 +8,27 @@ namespace calc
         {
             InitializeComponent();
         }
-        public class Angle
-        {
-            public int Degrees { get; private set; }
-            public int Minut { get; private set; }
-            public int Sec { get; private set; }
-        }
-
+        
+        double a, c;
+        int degree, minut, sec;
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            int a = int.Parse(textBox1.Text);
+            if (comboBox2.SelectedIndex == -1)
+            {
+                a = double.Parse(textBox1.Text);
+                degree = (int)a;
+                if (a % 1 != 0)
+                {
+                    minut = (int)(60 * (a-degree));
+                    if ((60 * (a - degree)) % 1 != 0)
+                    {;
+                        sec = (int)(60 * ((60 * (a - degree)) % 1));
+                        textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
+                    }
+                    else { textBox2.Text = (" " + degree + "° " + minut + "' "); }
+                }
+                else { textBox2.Text = (" " + degree + "° "); }
+            }
 
         }
 
@@ -31,13 +44,31 @@ namespace calc
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (comboBox2.SelectedIndex == 0) 
+            {
+                degree = int.Parse(textBox1.Text);
+                textBox2.Text = (" " + degree + "° ");
+            }
+            if (comboBox2.SelectedIndex == 1) 
+            { 
+                minut = int.Parse(textBox1.Text);
+                textBox2.Text = (" " + degree + "° " + minut + "' ");
+            }
+            if (comboBox2.SelectedIndex == 2)
+            {
+                sec = int.Parse(textBox1.Text);
+                textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
+            }
+            a = degree + minut * 0.06 + sec * 0.0036;
+           
 
         }
 
         private void button6_Click(object sender, EventArgs e)
         {
 
-            double c = Math.Cos(a);
+            c = Math.Cos(a);
+            textBox3.Text = ("косинус равен:" + c);
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -48,6 +79,22 @@ namespace calc
         private void button2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            c = Math.Sin(a);
+            textBox3.Text = ("синус равен:" + c);
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -99,6 +99,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(347, 23);
             textBox2.TabIndex = 8;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox3
             // 
@@ -106,6 +107,7 @@
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(347, 23);
             textBox3.TabIndex = 9;
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label4
             // 
@@ -119,6 +121,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "°", "'", "\"" });
             comboBox2.Location = new Point(341, 50);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(40, 23);
@@ -180,6 +183,7 @@
             button7.TabIndex = 17;
             button7.Text = "sin";
             button7.UseVisualStyleBackColor = true;
+            button7.Click += button7_Click;
             // 
             // button8
             // 
