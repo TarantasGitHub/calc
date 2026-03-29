@@ -63,6 +63,7 @@ namespace calc
                 textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
             }
             a = degree + minut * 0.06 + sec * 0.0036;
+            ar = a * Math.PI / 180;
 
 
 
