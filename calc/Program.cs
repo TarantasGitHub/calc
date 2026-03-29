@@ -12,7 +12,6 @@ namespace calc
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             var form = new Form1();
-            //form..comboBox2.Items.AddRange(new object[] { "1", "3", "4" });
             Application.Run(form);
         }
     }
