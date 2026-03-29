@@ -60,7 +60,7 @@
             label1.AutoSize = true;
             label1.Location = new Point(12, 23);
             label1.Name = "label1";
-            label1.Size = new Size(146, 15);
+            label1.Size = new Size(147, 15);
             label1.TabIndex = 3;
             label1.Text = "Введите число в градусах";
             label1.Click += label1_Click;
@@ -119,6 +119,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "1", "3", "4" });
             comboBox2.Location = new Point(341, 50);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(40, 23);
