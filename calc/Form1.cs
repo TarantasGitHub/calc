@@ -8,7 +8,6 @@ namespace calc
         public Form1()
         {
             InitializeComponent();
-            //comboBox2.Items.AddRange(new object[] { "1", "3", "4", "1", "3", "4" });
         }
 
         double a, c, ar;
@@ -48,43 +47,22 @@ namespace calc
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (sender is System.Windows.Forms.ComboBox cb)
+            if (comboBox2.SelectedIndex == 0)
             {
-                switch (cb.SelectedItem.ToString())
-                {
-                    case "°":
-                        textBox1.Text += "°";
-                        break;
-                    case "'":
-                        textBox1.Text += "'";
-                        break;
-                    case "\"":
-                        textBox1.Text += "\"";
-                        break;
-                    default:
-                        break;
-                }
+                degree = int.Parse(textBox1.Text);
+                textBox2.Text = (" " + degree + "° ");
             }
-            
-            //if (comboBox2.SelectedIndex == 0)
-            //{
-            //    degree = int.Parse(textBox1.Text);
-            //    textBox2.Text = (" " + degree + "° ");
-            //}
-            //if (comboBox2.SelectedIndex == 1)
-            //{
-            //    minut = int.Parse(textBox1.Text);
-            //    textBox2.Text = (" " + degree + "° " + minut + "' ");
-            //}
-            //if (comboBox2.SelectedIndex == 2)
-            //{
-            //    sec = int.Parse(textBox1.Text);
-            //    textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
-            //}
-            //a = degree + minut * 0.06 + sec * 0.0036;
-
-
-
+            if (comboBox2.SelectedIndex == 1)
+            {
+                minut = int.Parse(textBox1.Text);
+                textBox2.Text = (" " + degree + "° " + minut + "' ");
+            }
+            if (comboBox2.SelectedIndex == 2)
+            {
+                sec = int.Parse(textBox1.Text);
+                textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
+            }
+            a = degree + minut * 0.06 + sec * 0.0036;
         }
 
         private void button6_Click(object sender, EventArgs e)
