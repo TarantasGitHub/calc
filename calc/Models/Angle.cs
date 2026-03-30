@@ -19,6 +19,13 @@ namespace calc.Models
 
         public Angle(int degrees, int minutes, int seconds, decimal decimalPart = 0)
         {
+            if (decimalPart >= 1)
+            { throw new ArgumentOutOfRangeException(nameof(decimalPart), "Десятичная часть секунд должна быть мельше единицы."); }
+            if (seconds < 0 || seconds > 59)
+            { throw new ArgumentOutOfRangeException(nameof(seconds), "Секунды должны быть в диапазоне от 0 до 59."); }
+            if (minutes < 0 || minutes > 59)
+            { throw new ArgumentOutOfRangeException(nameof(minutes), "Минуты должны быть в диапазоне от 0 до 59."); }
+
             _degrees = degrees;
             _minutes = minutes;
             _seconds = seconds;
@@ -66,7 +73,7 @@ namespace calc.Models
                             int.TryParse(match.Groups[key].Value.Replace("'", ""), out m);
                             break;
                         case "seconds":
-                            int.TryParse(match.Groups[key].Value.Replace("\"", ""), out s);
+                            int.TryParse(match.Groups[key].Value.Replace("''", ""), out s);
                             break;
                         case "decimalpart":
                             decimal.TryParse(string.IsNullOrEmpty(match.Groups[key].Value) ? "0" : $"0{match.Groups[key].Value}", out p);
@@ -83,7 +90,7 @@ namespace calc.Models
 
         public override string ToString()
         {
-            return $"{_degrees}° {_minutes}' {_seconds}\"{_decimalPart.ToString().Substring(1)}";
+            return $"{_degrees}° {_minutes}' {_seconds}''{_decimalPart.ToString().Substring(1)}";
         }
 
         public static Angle operator +(Angle a, Angle b)
@@ -173,5 +180,5 @@ namespace calc.Models
             return FromDecimal(a.ToDecimalDegrees() / k);
         }
     }
-    
+
 }

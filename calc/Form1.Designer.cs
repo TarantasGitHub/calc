@@ -212,12 +212,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(265, 23);
+            label5.Location = new Point(12, 78);
             label5.Name = "label5";
             label5.Size = new Size(10, 15);
             label5.TabIndex = 20;
             label5.Text = " ";
-            label5.Click += label5_Click;
             // 
             // Form1
             // 

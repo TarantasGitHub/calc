@@ -11,16 +11,19 @@ namespace calc
         {
             InitializeComponent();
         }
+
         private Angle? Angle;
         private Stack<string> _operators = new Stack<string>();
         decimal Integ;
         double a;
         int degrees, minutes, secunds;
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             if (comboBox2.SelectedIndex == -1)
             {
-                a = double.Parse(textBox1.Text);
+                double.TryParse(textBox1.Text, out a);
+                Angle = Angle.FromDecimal((decimal)a);
                 degrees = (int)a;
                 if (a % 1 != 0)
                 {
@@ -34,8 +37,6 @@ namespace calc
                 }
                 else { textBox2.Text = (" " + degrees + "° "); }
             }
-            Angle = Angle.FromString(textBox2.Text);
-            
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -94,7 +95,8 @@ namespace calc
                     MessageBox.Show("Минуты должны входить в диапозон от 0 до 60", "Ошибка!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     minutes = 0;
                     textBox2.Text = (" " + degrees + "° ");
-                }else { textBox2.Text = (" " + degrees + "° " + minutes + "' "); }
+                }
+                else { textBox2.Text = (" " + degrees + "° " + minutes + "' "); }
             }
             if (comboBox2.SelectedIndex == 2)
             {
@@ -104,9 +106,10 @@ namespace calc
                     MessageBox.Show("Секунды должны входить в диапозон от 0 до 60", "Ошибка!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     secunds = 0;
                     textBox2.Text = (" " + degrees + "° " + minutes + "' ");
-                }else { textBox2.Text = (" " + degrees + "° " + minutes + "' " + secunds + "'' "); }
+                }
+                else { textBox2.Text = (" " + degrees + "° " + minutes + "' " + secunds + "'' "); }
             }
-            a = degree + minut * 0.06 + sec * 0.0036;
+            //a = degree + minut * 0.06 + sec * 0.0036;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -171,7 +174,7 @@ namespace calc
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+            Angle = Angle.FromString(textBox2.Text);
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -225,11 +228,6 @@ namespace calc
                 textBox1.Text = string.Empty;
             }
             else { MessageBox.Show("Вы не ввели угол!!!!!!!!!!!!!!", "Ошибка!!", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
