@@ -44,7 +44,7 @@ namespace calc.Models
 
         public static Angle FromString(string value)
         {
-            var regEx = new Regex("(?<degrees>\\d+°)?\\s*(?<minutes>\\d+')?\\s*(?<seconds>\\d+\")?\\s*(?<decimalpart>\\.\\d+\")?");
+            var regEx = new Regex("\\s*(?<degrees>\\d+°)?\\s*(?<minutes>\\d+')?\\s*(?<seconds>\\d+\")?\\s*(?<decimalpart>\\.\\d+\")?");
             var match = regEx.Match(value);
             if (match.Success)
             {

@@ -11,7 +11,7 @@ namespace calc
             InitializeComponent();
         }
         private Angle? Angle;
-        double a, c, ar;
+        double a, c;
         int degree, minut, sec;
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -24,7 +24,6 @@ namespace calc
                     minut = (int)(60 * (a - degree));
                     if ((60 * (a - degree)) % 1 != 0)
                     {
-                        ;
                         sec = (int)(60 * ((60 * (a - degree)) % 1));
                         textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
                     }
@@ -32,6 +31,8 @@ namespace calc
                 }
                 else { textBox2.Text = (" " + degree + "° "); }
             }
+            //ar = a * Math.PI / 180;
+            //Angle = new Angle(degree, minut, sec);
             Angle = Angle.FromString(textBox2.Text);
 
         }
@@ -63,7 +64,7 @@ namespace calc
                 sec = int.Parse(textBox1.Text);
                 textBox2.Text = (" " + degree + "° " + minut + "' " + sec + "'' ");
             }
-            a = degree + minut * 0.06 + sec * 0.0036;
+            
 
 
 
@@ -78,12 +79,13 @@ namespace calc
 
         private void button8_Click(object sender, EventArgs e)
         {
-            c = Math.Tan(ar);
+            c = Math.Tan(Angle.Radians);
             textBox3.Text = ("тангенс равен: " + c);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+
 
         }
 
@@ -94,7 +96,7 @@ namespace calc
 
         private void button7_Click(object sender, EventArgs e)
         {
-            c = Math.Sin(ar);
+            c = Math.Sin(Angle.Radians);
             textBox3.Text = ("синус равен: " + c);
         }
 
@@ -105,7 +107,7 @@ namespace calc
 
         private void button9_Click(object sender, EventArgs e)
         {
-            c = 1 / Math.Tan(ar);
+            c = 1 / Math.Tan(Angle.Radians);
             textBox3.Text = ("котангенс равен: " + c);
         }
     }
