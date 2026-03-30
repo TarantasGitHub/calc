@@ -1,4 +1,5 @@
 using calc.Models;
+using System.Text.RegularExpressions;
 
 namespace calc
 {
@@ -6,6 +7,7 @@ namespace calc
     public partial class Form1 : Form
     {
         private Angle? Angle;
+        private Stack<string> _operators = new Stack<string>();
 
         public Form1()
         {
@@ -43,7 +45,33 @@ namespace calc
 
         private void button1_Click(object sender, EventArgs e)
         {
+            var operatorsRegex = new Regex("^\\+|-|\\*|\\/$");
+            if (_operators.Count > 0)
+            {
+                var record = _operators.Pop();
+                if (operatorsRegex.IsMatch(record))
+                {
+                    switch (record)
+                    {
+                        case "+":
+                            Angle = Angle.FromString(_operators.Pop()) + Angle;
+                            break;
+                        case "-":
+                            Angle = Angle.FromString(_operators.Pop()) - Angle;
+                            break;
+                        case "*":
+                            Angle = Angle.FromString(_operators.Pop()) - Angle;
+                            break;
+                        case "/":
+                            Angle = Angle.FromString(_operators.Pop()) - Angle;
+                            break;
+                        default:
+                            break;
+                    }
+                    textBox3.Text = ("Результат равен: " + Angle.ToString());
+                }
 
+            }
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,7 +91,7 @@ namespace calc
                         break;
                     default:
                         break;
-                }
+                }                
             }
         }
 
@@ -95,7 +123,12 @@ namespace calc
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            if (Angle != null)
+            {
+                _operators.Push(Angle.ToString());
+                _operators.Push("+");
+                textBox1.Text = string.Empty;
+            }
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
